@@ -14,10 +14,11 @@ ribbon:
   ReadTimeout: 60000
   ConnectTimeout: 60000
 
-#zuul:
-#  routes:
-#    zuul.path: /zuul/**
-#    zuul.serviceId: consume
+zuul:
+  routes:
+    zuul:
+      path: /consumer/**
+      service-id: consume
 
 
 

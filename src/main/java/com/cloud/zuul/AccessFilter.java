@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class AccessFilter extends ZuulFilter {
     private Logger logger = LoggerFactory.getLogger(AccessFilter.class);
@@ -39,6 +40,11 @@ public class AccessFilter extends ZuulFilter {
         } catch (Exception e) {
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(HttpServletResponse.SC_UNAUTHORIZED);
+            try {
+                ctx.getResponse().getWriter().write("token is null");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return null;
     }
